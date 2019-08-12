@@ -33,6 +33,30 @@
     $('#loadBtn2').remove()
   }
 
+  $('#generateDoggoBtn').click(clickDoggoBtn)
+  let dogImage; 
+
+  function clickDoggoBtn () {
+    console.info('is this working?')
+    $.getJSON("https://dog.ceo/api/breeds/image/random", function(data) {
+      // add img tag with src
+      // set variable, with only the image src-excluding the append to
+      //create if statement to check if there is an image
+      //if there is an image replace src url with the attr data.message 
+      
+      
+      if (dogImage) {
+        $(dogImage).attr('src', data.message)
+      } else {
+        dogImage = $( '<img class="dogImage">').attr('src', data.message).appendTo('#doggoContainer');
+      }
+     
+    });
+    $("#generateDoggoBtn").prop('disabled', true).text('Generating Doggo...');
+    // $( '<img src= "https://images.dog.ceo/breeds/springer-english/n02102040_3993.jpg">').appendTo( "#doggoContainer" );
+
+    $("#generateDoggoBtn").prop('disabled', false).text('Generate Doggo');
+  }
   //
   // Pretty simple, right?
   //
