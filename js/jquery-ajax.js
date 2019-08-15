@@ -131,6 +131,39 @@
   //
 
   // TODO: your code goes here :)
+  // $('#select-breed').click(clickDropdown)
+
+
+
+  $(function() {
+   
+    $('.select-breed').click(function() {
+  
+      $.ajax({url: "https://dog.ceo/api/breeds/list", success: function(results){
+
+        for(let i = 0; i < results.message.length; i++) {
+          let optionTag = document.createElement("option");
+          $(optionTag).attr("value", results.message[i])
+          optionTag.innerHTML = results.message[i]
+          $(optionTag).appendTo('.select-breed')
+        }
+
+       
+
+      }});
+
+  })});
+
+  $('.select-breed').change(function() {
+    $.ajax("https://dog.ceo/api/breed/poodle/images/random")
+  })
+
+
+
+
+
+
+
 
   //
   // Excellent work!
