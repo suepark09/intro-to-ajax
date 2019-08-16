@@ -133,30 +133,65 @@
   // TODO: your code goes here :)
   // $('#select-breed').click(clickDropdown)
 
+  // console.debug('for lots of incofmration')
+  // console.info('info dddd')
+  // console.error('bad bad bad')
+  // console.warning('warning!!!!!')
 
+  let dogBreed = [];
+  let url = ""
 
-  $(function() {
-   
+  $(function () {
+
     $('.select-breed').click(function() {
-  
+    
       $.ajax({url: "https://dog.ceo/api/breeds/list", success: function(results){
-
+  
         for(let i = 0; i < results.message.length; i++) {
+      
           let optionTag = document.createElement("option");
           $(optionTag).attr("value", results.message[i])
+          $(optionTag).attr("class", "breed")
           optionTag.innerHTML = results.message[i]
           $(optionTag).appendTo('.select-breed')
+          dogBreed.push(results.message[i])
+          // console.log(dogBreed)
         }
-
-       
 
       }});
 
-  })});
+      
 
-  $('.select-breed').change(function() {
-    $.ajax("https://dog.ceo/api/breed/poodle/images/random")
-  })
+        // let optionTag = document.getElementsByClassName("breed").innerHTML
+      let selectedDog = $('select').val();
+
+      url = "https://dog.ceo/api/breed/" + selectedDog + "/images/random"
+      console.log('test', url)
+      // url = "wuttt"
+      
+
+    })}
+  );
+
+  $('.select-breed').change(changeSelect)
+  console.log('url test', url)
+
+  function changeSelect () {
+    console.log('THIS IS THE CHANGE EVENT')
+
+    $.ajax({url, success: function(results) {
+      let imgTag = document.createElement("img");
+      $(imgTag).each(function() {
+
+      })
+
+    }})
+  }
+
+//use $each method to apply results.message to each item in the select tag
+
+      // console.log('wuts this', results)
+      //if clicked on option tag, create img tag in DOM
 
 
 
